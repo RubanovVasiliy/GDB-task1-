@@ -1,0 +1,196 @@
+ gcc -Wall -g -O0 -o ex main.c
+ gdb ex
+GNU gdb (Ubuntu 8.1-0ubuntu3.2) 8.1.0.20180409-git
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change andredistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ex...done.
+(gdb) b main
+Breakpoint 1 at 0x6e7: file main.c, line 13.
+(gdb) n
+The program is not being run.
+(gdb) r
+Starting program: /home/runner/ShorttermKindheartedOptimization/ex
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at main.c:13
+13      int* arr = NULL;
+(gdb) n
+14      int n = 10;
+(gdb) n
+15      init(arr, n);
+(gdb) n
+17      for (i = 0; i < n; ++i){
+(gdb) r
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/runner/ShorttermKindheartedOptimization/ex
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at main.c:13
+13      int* arr = NULL;
+(gdb) display &arr
+1: &arr = (int **) 0x7ffe8c2e9268
+(gdb) n
+14      int n = 10;
+1: &arr = (int **) 0x7ffe8c2e9268
+(gdb) n
+15      init(arr, n);
+1: &arr = (int **) 0x7ffe8c2e9268
+(gdb) n
+17      for (i = 0; i < n; ++i){
+1: &arr = (int **) 0x7ffe8c2e9268
+(gdb) n
+18        printf("%d\n", arr[i]);
+1: &arr = (int **) 0x7ffe8c2e9268
+(gdb) n
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00005558611bd724 in main () at main.c:18
+18        printf("%d\n", arr[i]);
+1: &arr = (int **) 0x7ffe8c2e9268
+(gdb) n
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+(gdb) n
+The program is not being run.
+(gdb) r
+Starting program: /home/runner/ShorttermKindheartedOptimization/ex
+warning: Error disabling address space randomization: Operation not permitted
+
+Breakpoint 1, main () at main.c:13
+13      int* arr = NULL;
+1: &arr = (int **) 0x7ffd89f33268
+(gdb) s
+14      int n = 10;
+1: &arr = (int **) 0x7ffd89f33268
+(gdb) s
+15      init(arr, n);
+1: &arr = (int **) 0x7ffd89f33268
+(gdb) s
+init (arr=0x0, n=10) at main.c:5
+5     arr = malloc(n * sizeof(int));
+(gdb) s
+7     for (i = 0; i < n; ++i){
+(gdb) print &arr
+$1 = (int **) 0x7ffd89f33238
+(gdb) print &arr[i]
+$2 = (int *) 0x5584171b1260
+(gdb) s
+8       arr[i] = i;
+(gdb) display &arr[i]
+2: &arr[i] = (int *) 0x5584171b1260
+(gdb) display &arr
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+7     for (i = 0; i < n; ++i){
+2: &arr[i] = (int *) 0x5584171b1260
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+8       arr[i] = i;
+2: &arr[i] = (int *) 0x5584171b1264
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+7     for (i = 0; i < n; ++i){
+2: &arr[i] = (int *) 0x5584171b1264
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+8       arr[i] = i;
+2: &arr[i] = (int *) 0x5584171b1268
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+7     for (i = 0; i < n; ++i){
+2: &arr[i] = (int *) 0x5584171b1268
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+8       arr[i] = i;
+2: &arr[i] = (int *) 0x5584171b126c
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+7     for (i = 0; i < n; ++i){
+2: &arr[i] = (int *) 0x5584171b126c
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+8       arr[i] = i;
+2: &arr[i] = (int *) 0x5584171b1270
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+7     for (i = 0; i < n; ++i){
+2: &arr[i] = (int *) 0x5584171b1270
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+8       arr[i] = i;
+2: &arr[i] = (int *) 0x5584171b1274
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+7     for (i = 0; i < n; ++i){
+2: &arr[i] = (int *) 0x5584171b1274
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+8       arr[i] = i;
+2: &arr[i] = (int *) 0x5584171b1278
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+7     for (i = 0; i < n; ++i){
+2: &arr[i] = (int *) 0x5584171b1278
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+8       arr[i] = i;
+2: &arr[i] = (int *) 0x5584171b127c
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+7     for (i = 0; i < n; ++i){
+2: &arr[i] = (int *) 0x5584171b127c
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+8       arr[i] = i;
+2: &arr[i] = (int *) 0x5584171b1280
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) n
+7     for (i = 0; i < n; ++i){
+2: &arr[i] = (int *) 0x5584171b1280
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) n
+8       arr[i] = i;
+2: &arr[i] = (int *) 0x5584171b1284
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+7     for (i = 0; i < n; ++i){
+2: &arr[i] = (int *) 0x5584171b1284
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+10  }
+2: &arr[i] = (int *) 0x5584171b1288
+3: &arr = (int **) 0x7ffd89f33238
+(gdb) s
+main () at main.c:17
+17      for (i = 0; i < n; ++i){
+1: &arr = (int **) 0x7ffd89f33268
+(gdb) s
+18        printf("%d\n", arr[i]);
+1: &arr = (int **) 0x7ffd89f33268
+(gdb) display &arr[i]
+4: &arr[i] = (int *) 0x0
+(gdb) s
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000558416401724 in main ()
+    at main.c:18
+18        printf("%d\n", arr[i]);
+1: &arr = (int **) 0x7ffd89f33268
+4: &arr[i] = (int *) 0x0
+(gdb) s
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
